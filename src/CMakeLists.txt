@@ -1,25 +1,25 @@
 
 set(SOURCE_FILES
-        arbiter.cc
-        area.cc
-        bank.cc
-        basic_circuit.cc
-        cacti_interface.cc
-        component.cc
-        crossbar.cc
-        decoder.cc
-        htree2.cc
-        io.cc
-        main.cc
-        mat.cc
-        nuca.cc
-        parameter.cc
-        router.cc
-        subarray.cc
-        technology.cc
-        uca.cc
-        Ucache.cc
-        wire.cc)
+        arbiter.cpp
+        area.cpp
+        bank.cpp
+        basic_circuit.cpp
+        cacti_interface.cpp
+        component.cpp
+        crossbar.cpp
+        decoder.cpp
+        htree2.cpp
+        io.cpp
+        main.cpp
+        mat.cpp
+        nuca.cpp
+        parameter.cpp
+        router.cpp
+        subarray.cpp
+        technology.cpp
+        uca.cpp
+        Ucache.cpp
+        wire.cpp)
 
 
 add_executable(cacti ${SOURCE_FILES})
