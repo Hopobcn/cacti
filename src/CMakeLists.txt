@@ -23,3 +23,4 @@ set(SOURCE_FILES
 
 
 add_executable(cacti ${SOURCE_FILES})
+target_link_libraries(cacti ${CMAKE_THREAD_LIBS_INIT})

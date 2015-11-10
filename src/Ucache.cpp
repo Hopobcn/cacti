@@ -214,7 +214,7 @@ void* calc_time_mt_wrapper(void* void_obj) {
 
 bool calculate_time(bool is_tag, int pure_ram, double Nspd, unsigned int Ndwl, unsigned int Ndbl, unsigned int Ndcm,
         unsigned int Ndsam_lev_1, unsigned int Ndsam_lev_2, mem_array* ptr_array, int flag_results_populate,
-        results_mem_array* ptr_results, uca_org_t* ptr_fin_res, bool is_main_mem) {
+        results_mem_array* UNUSED(ptr_results), uca_org_t* UNUSED(ptr_fin_res), bool is_main_mem) {
     DynamicParameter dyn_p(is_tag, pure_ram, Nspd, Ndwl, Ndbl, Ndcm, Ndsam_lev_1, Ndsam_lev_2, is_main_mem);
 
     if (dyn_p.is_valid == false) {

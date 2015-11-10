@@ -95,7 +95,7 @@ double logtwo(double x) {
 /*----------------------------------------------------------------------*/
 
 
-double gate_C(double width, double wirelength, bool _is_dram, bool _is_cell, bool _is_wl_tr) {
+double gate_C(double width, double UNUSED(wirelength), bool _is_dram, bool _is_cell, bool _is_wl_tr) {
     const TechnologyParameter::DeviceType* dt;
 
     if (_is_dram && _is_cell) {
@@ -115,7 +115,7 @@ double gate_C(double width, double wirelength, bool _is_dram, bool _is_cell, boo
 // returns gate capacitance in Farads
 // actually this function is the same as gate_C() now
 double gate_C_pass(double width,       // gate width in um (length is Lphy_periph_global)
-        double wirelength,  // poly wire length going to gate in lambda
+        double UNUSED(wirelength),  // poly wire length going to gate in lambda
         bool _is_dram, bool _is_cell, bool _is_wl_tr) {
     // v5.0
     const TechnologyParameter::DeviceType* dt;

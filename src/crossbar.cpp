@@ -114,7 +114,7 @@ void Crossbar::compute_power() {
     power.readOp.leakage = n_inp * n_out * flit_size * deviceType->Vdd *
                            (cmos_Ileak(g_tp.min_w_nmos_ * (TriS2 * 2 + TriS1 * 6), min_w_pmos * (TriS2 * 2 + TriS1 * 6),
                                        false) + w1.power.readOp.leakage + w2.power.readOp.leakage);
-    Wire winit();
+    Wire winit;
 }
 
 void Crossbar::print_crossbar() {

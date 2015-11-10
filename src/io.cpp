@@ -589,7 +589,7 @@ uca_org_t cacti_interface(int cache_size, int line_size, int associativity, int 
         int wire_inside_mat_type_in, int wire_outside_mat_type_in, int is_nuca, // 0 - UCA, 1 - NUCA
         int core_count, int cache_level, // 0 - L2, 1 - L3
         int nuca_bank_count, int nuca_obj_func_delay, int nuca_obj_func_dynamic_power, int nuca_obj_func_leakage_power,
-        int nuca_obj_func_area, int nuca_obj_func_cycle_time, int nuca_dev_func_delay, int nuca_dev_func_dynamic_power,
+        int nuca_obj_func_area, int nuca_obj_func_cycle_time, int UNUSED(nuca_dev_func_delay), int nuca_dev_func_dynamic_power,
         int nuca_dev_func_leakage_power, int nuca_dev_func_area, int nuca_dev_func_cycle_time,
         int REPEATERS_IN_HTREE_SEGMENTS_in,//TODO for now only wires with repeaters are supported
         int p_input) {

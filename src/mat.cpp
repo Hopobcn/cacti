@@ -634,7 +634,7 @@ double Mat::compute_bitline_delay(double inrisetime) {
 }
 
 
-double Mat::compute_sa_delay(double inrisetime) {
+double Mat::compute_sa_delay(double UNUSED(inrisetime)) {
     int num_sa_subarray = subarray.num_cols / deg_bl_muxing; //in a subarray
 
     //Bitline circuitry leakage. 

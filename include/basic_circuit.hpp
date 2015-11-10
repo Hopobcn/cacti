@@ -59,6 +59,11 @@ uint32_t _log2(uint64_t num);
 
 #endif
 
+#ifdef __GNUC__
+#  define UNUSED(x) UNUSED_ ## x __attribute__((__unused__))
+#else
+#  define UNUSED(x) UNUSED_ ## x
+#endif
 
 enum Wire_placement {
     outside_mat,

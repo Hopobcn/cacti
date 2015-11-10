@@ -221,13 +221,13 @@ const double CU_RESISTIVITY = 0.022; //ohm-micron
 const double BULK_CU_RESISTIVITY = 0.018; //ohm-micron
 const double PERMITTIVITY_FREE_SPACE = 8.854e-18; //F/micron
 
-const static uint32_t sram_num_cells_wl_stitching_ = 16;
+const static std::uint32_t sram_num_cells_wl_stitching_ = 16;
 
-const static uint32_t dram_num_cells_wl_stitching_ = 64;
+const static std::uint32_t dram_num_cells_wl_stitching_ = 64;
 
-const static uint32_t comm_dram_num_cells_wl_stitching_ = 256;
+const static std::uint32_t comm_dram_num_cells_wl_stitching_ = 256;
 
-const static uint32_t num_bits_per_ecc_b_ = 8;
+const static std::uint32_t num_bits_per_ecc_b_ = 8;
 
 #define MAX_NUMBER_GATES_STAGE 20
 #define MAX_NUMBER_HTREE_NODES 20
