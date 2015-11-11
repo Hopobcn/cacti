@@ -1,6 +1,9 @@
 cmake_minimum_required(VERSION 3.0)
 project(ncd_project_cacti)
 
+# specify custom cmake find modules
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
+
 set( CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/lib )
 set( CMAKE_LIBRARY_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/lib )
 set( CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/bin )
@@ -13,6 +16,8 @@ if (Threads_FOUND)
         add_definitions("-DNTHREADS=8")
     endif(CMAKE_BUILD_TYPE STREQUAL "Debug")
 endif(Threads_FOUND)
+
+find_package(GMock REQUIRED)
 
 if (("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang") OR
 ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU"))
@@ -42,3 +47,4 @@ endif(("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang") OR
 ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU"))
 
 add_subdirectory(src)
+#add_subdirectory(test)
