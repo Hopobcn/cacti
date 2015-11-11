@@ -19,6 +19,7 @@ if (("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang") OR
     #set(COMMON_CXX_FLAGS "-std=c++11 -Wall -Wextra -Wformat -Wformat-security -Wno-unknown-pragmas")
 
     set(COMMON_CXX_FLAGS "-std=c++11 -Wno-unknown-pragmas")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${COMMON_CXX_FLAGS}")
     if (CMAKE_BUILD_TYPE STREQUAL "Debug")
         set(COMMON_CXX_FLAGS "${COMMON_CXX_FLAGS} -Wall -Wextra -Wformat -Wformat-security")
     endif(CMAKE_BUILD_TYPE STREQUAL "Debug")
