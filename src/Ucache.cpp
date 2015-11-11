@@ -162,15 +162,15 @@ void* calc_time_mt_wrapper(void* void_obj) {
 
                         if (is_tag == true) {
                             is_valid_partition = calculate_time(is_tag, pure_ram, Nspd, Ndwl, Ndbl, Ndcm, Ndsam_lev_1,
-                                                                Ndsam_lev_2, tag_arr.back(), 0, NULL, NULL,
+                                                                Ndsam_lev_2, tag_arr.back(), 0, nullptr, nullptr,
                                                                 is_main_mem);
                         }
                         // If it's a fully-associative cache, the data array partition parameters are identical to that of
                         // the tag array, so compute data array partition properties also here.
                         if (is_tag == false || g_ip->fully_assoc) {
                             is_valid_partition = calculate_time(is_tag/*false*/, pure_ram, Nspd, Ndwl, Ndbl, Ndcm,
-                                                                Ndsam_lev_1, Ndsam_lev_2, data_arr.back(), 0, NULL,
-                                                                NULL, is_main_mem);
+                                                                Ndsam_lev_1, Ndsam_lev_2, data_arr.back(), 0, nullptr,
+                                                                nullptr, is_main_mem);
                         }
 
                         if (is_valid_partition) {
@@ -208,7 +208,7 @@ void* calc_time_mt_wrapper(void* void_obj) {
     data_arr.pop_back();
     tag_arr.pop_back();
 
-    pthread_exit(NULL);
+    pthread_exit(nullptr);
 }
 
 
@@ -221,7 +221,7 @@ bool calculate_time(bool is_tag, int pure_ram, double Nspd, unsigned int Ndwl, u
         return false;
     }
 
-    UCA* uca = new UCA(dyn_p);
+    auto uca = new UCA(dyn_p);
 
     if (flag_results_populate) { //For the final solution, populate the ptr_results data structure  -- TODO: copy only necessary variables
     } else {
@@ -375,7 +375,7 @@ void find_optimal_uca(uca_org_t* res, min_values_t* minval, list<uca_org_t>& uli
         exit(0);
     }
 
-    for (list<uca_org_t>::iterator niter = ulist.begin(); niter != ulist.end(); niter++) {
+    for (auto niter = ulist.begin(); niter != ulist.end(); niter++) {
         if (g_ip->ed == 1) {
             cost = ((niter)->access_time / minval->min_delay) * ((niter)->power.readOp.dynamic / minval->min_dyn);
             if (min_cost > cost) {
@@ -432,7 +432,7 @@ void filter_tag_arr(const min_values_t* min, list<mem_array*>& list) {
     double cost = BIGNUM;
     double cur_cost;
     double wt_delay = g_ip->delay_wt, wt_dyn = g_ip->dynamic_power_wt, wt_leakage = g_ip->leakage_power_wt, wt_cyc = g_ip->cycle_time_wt, wt_area = g_ip->area_wt;
-    mem_array* res = NULL;
+    mem_array* res = nullptr;
 
     if (list.empty() == true) {
         cout << "ERROR: no valid tag organizations found" << endl;
@@ -452,7 +452,7 @@ void filter_tag_arr(const min_values_t* min, list<mem_array*>& list) {
             cur_cost = BIGNUM;
         }
         if (cur_cost < cost) {
-            if (res != NULL) {
+            if (res != nullptr) {
                 delete res;
             }
             cost = cur_cost;
@@ -482,7 +482,7 @@ void filter_data_arr(list<mem_array*>& curr_list) {
     for (iter = curr_list.begin(); iter != curr_list.end(); ++iter) {
         mem_array* m = *iter;
 
-        if (m == NULL) {
+        if (m == nullptr) {
             exit(1);
         }
 
@@ -531,7 +531,7 @@ void solve(uca_org_t* fin_res) {
 
 
     // distribute calculate_time() execution to multiple threads
-    calc_time_mt_wrapper_struct* calc_array = new calc_time_mt_wrapper_struct[nthreads];
+    auto calc_array = new calc_time_mt_wrapper_struct[nthreads];
     pthread_t threads[nthreads];
 
     for (uint32_t t = 0; t < nthreads; t++) {
@@ -555,11 +555,11 @@ void solve(uca_org_t* fin_res) {
             calc_array[t].is_tag = is_tag;
             calc_array[t].is_main_mem = false;
             calc_array[t].Nspd_min = 0.125;
-            pthread_create(&threads[t], NULL, calc_time_mt_wrapper, (void*) (&(calc_array[t])));
+            pthread_create(&threads[t], nullptr, calc_time_mt_wrapper, (void*) (&(calc_array[t])));
         }
 
-        for (uint32_t t = 0; t < nthreads; t++) {
-            pthread_join(threads[t], NULL);
+        for (auto& thread : threads) {
+            pthread_join(thread, nullptr);
         }
 
         for (uint32_t t = 0; t < nthreads; t++) {
@@ -582,11 +582,11 @@ void solve(uca_org_t* fin_res) {
             calc_array[t].is_tag = is_tag;
             calc_array[t].is_main_mem = g_ip->is_main_mem;
             calc_array[t].Nspd_min = (double) (g_ip->out_w) / (double) (g_ip->block_sz * 8);
-            pthread_create(&threads[t], NULL, calc_time_mt_wrapper, (void*) (&(calc_array[t])));
+            pthread_create(&threads[t], nullptr, calc_time_mt_wrapper, (void*) (&(calc_array[t])));
         }
 
-        for (uint32_t t = 0; t < nthreads; t++) {
-            pthread_join(threads[t], NULL);
+        for (auto& thread : threads) {
+            pthread_join(thread, nullptr);
         }
 
         data_arr.clear();
@@ -597,9 +597,9 @@ void solve(uca_org_t* fin_res) {
     }
 
 
-    min_values_t* d_min = new min_values_t();
-    min_values_t* t_min = new min_values_t();
-    min_values_t* cache_min = new min_values_t();
+    auto d_min = new min_values_t();
+    auto t_min = new min_values_t();
+    auto cache_min = new min_values_t();
 
     for (uint32_t t = 0; t < nthreads; t++) {
         d_min->update_min_values(calc_array[t].data_res);
@@ -621,7 +621,7 @@ void solve(uca_org_t* fin_res) {
     if (pure_ram == true) {
         for (miter = data_arr.begin(); miter != data_arr.end(); miter++) {
             uca_org_t& curr_org = sol_list.back();
-            curr_org.tag_array2 = NULL;
+            curr_org.tag_array2 = nullptr;
             curr_org.data_array2 = (*miter);
 
             curr_org.find_delay();

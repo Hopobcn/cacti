@@ -504,7 +504,7 @@ Wire::init_wire() {
     }
     repeated_wire.pop_back();
     update_fullswing();
-    Wire* l_wire = new Wire(Low_swing, 1000/* 1 mm*/, 1);
+    auto l_wire = new Wire(Low_swing, 1000/* 1 mm*/, 1);
     low_swing.delay = l_wire->delay;
     low_swing.power = l_wire->power;
     delete l_wire;

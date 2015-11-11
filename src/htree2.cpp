@@ -192,7 +192,7 @@ Htree2::in_htree() {
     //temp var
     double s1 = 0, s2 = 0, s3 = 0;
     double l_eff = 0;
-    Wire* wtemp1 = 0, * wtemp2 = 0, * wtemp3 = 0;
+    Wire* wtemp1 = nullptr, * wtemp2 = nullptr, * wtemp3 = nullptr;
     double len = 0, ht = 0;
     int option = 0;
 
@@ -258,7 +258,7 @@ Htree2::in_htree() {
             wtemp2 = new Wire(wt, len / 2);  // next hor
             len_temp = len;
             len /= 2;
-            wtemp3 = 0;
+            wtemp3 = nullptr;
             h--;
             option = 0;
         } else if (v > 0 && h > 0) {
@@ -280,7 +280,7 @@ Htree2::in_htree() {
             wtemp2 = new Wire(wt, ht / 2);  // next ver
             ht_temp = ht;
             ht /= 2;
-            wtemp3 = 0;
+            wtemp3 = nullptr;
             v--;
             option = 2;
         }
@@ -366,7 +366,7 @@ void Htree2::out_htree() {
     //temp var
     double s1 = 0, s2 = 0, s3 = 0;
     double l_eff = 0;
-    Wire* wtemp1 = 0, * wtemp2 = 0, * wtemp3 = 0;
+    Wire* wtemp1 = nullptr, * wtemp2 = nullptr, * wtemp3 = nullptr;
     double len = 0, ht = 0;
     int option = 0;
 
@@ -432,7 +432,7 @@ void Htree2::out_htree() {
             wtemp2 = new Wire(wt, len / 2);  // next hor
             len_temp = len;
             len /= 2;
-            wtemp3 = 0;
+            wtemp3 = nullptr;
             h--;
             option = 0;
         } else if (v > 0 && h > 0) {
@@ -454,7 +454,7 @@ void Htree2::out_htree() {
             wtemp2 = new Wire(wt, ht / 2);  // next ver
             ht_temp = ht;
             ht /= 2;
-            wtemp3 = 0;
+            wtemp3 = nullptr;
             v--;
             option = 2;
         }

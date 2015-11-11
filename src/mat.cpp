@@ -111,33 +111,33 @@ Mat::Mat(const DynamicParameter& dyn_p)
     sa_mux_lev_2_dec = new Decoder(dp.Ndsam_lev_2, false, C_ld_sa_mux_lev_2_dec_out, R_wire_sa_mux_dec_out, is_fa,
                                    is_dram, false, cell);
 
-    PredecBlk* r_predec_blk1 = new PredecBlk(num_dec_signals, row_dec,
+    auto r_predec_blk1 = new PredecBlk(num_dec_signals, row_dec,
                                              num_subarrays_per_row * subarray.num_rows * g_tp.wire_inside_mat.C_per_um *
                                              cell.h, subarray.num_rows * g_tp.wire_inside_mat.R_per_um * cell.h,
                                              num_subarrays_per_mat, is_dram, true);
-    PredecBlk* r_predec_blk2 = new PredecBlk(num_dec_signals, row_dec,
+    auto r_predec_blk2 = new PredecBlk(num_dec_signals, row_dec,
                                              num_subarrays_per_row * subarray.num_rows * g_tp.wire_inside_mat.C_per_um *
                                              cell.h, subarray.num_rows * g_tp.wire_inside_mat.R_per_um * cell.h,
                                              num_subarrays_per_mat, is_dram, false);
-    PredecBlk* b_mux_predec_blk1 = new PredecBlk(deg_bl_muxing, bit_mux_dec, 0, 0, 1, is_dram, true);
-    PredecBlk* b_mux_predec_blk2 = new PredecBlk(deg_bl_muxing, bit_mux_dec, 0, 0, 1, is_dram, false);
-    PredecBlk* sa_mux_lev_1_predec_blk1 = new PredecBlk(dyn_p.deg_senseamp_muxing_non_associativity, sa_mux_lev_1_dec,
+    auto b_mux_predec_blk1 = new PredecBlk(deg_bl_muxing, bit_mux_dec, 0, 0, 1, is_dram, true);
+    auto b_mux_predec_blk2 = new PredecBlk(deg_bl_muxing, bit_mux_dec, 0, 0, 1, is_dram, false);
+    auto sa_mux_lev_1_predec_blk1 = new PredecBlk(dyn_p.deg_senseamp_muxing_non_associativity, sa_mux_lev_1_dec,
                                                         0, 0, 1, is_dram, true);
-    PredecBlk* sa_mux_lev_1_predec_blk2 = new PredecBlk(dyn_p.deg_senseamp_muxing_non_associativity, sa_mux_lev_1_dec,
+    auto sa_mux_lev_1_predec_blk2 = new PredecBlk(dyn_p.deg_senseamp_muxing_non_associativity, sa_mux_lev_1_dec,
                                                         0, 0, 1, is_dram, false);
-    PredecBlk* sa_mux_lev_2_predec_blk1 = new PredecBlk(dp.Ndsam_lev_2, sa_mux_lev_2_dec, 0, 0, 1, is_dram, true);
-    PredecBlk* sa_mux_lev_2_predec_blk2 = new PredecBlk(dp.Ndsam_lev_2, sa_mux_lev_2_dec, 0, 0, 1, is_dram, false);
+    auto sa_mux_lev_2_predec_blk1 = new PredecBlk(dp.Ndsam_lev_2, sa_mux_lev_2_dec, 0, 0, 1, is_dram, true);
+    auto sa_mux_lev_2_predec_blk2 = new PredecBlk(dp.Ndsam_lev_2, sa_mux_lev_2_dec, 0, 0, 1, is_dram, false);
     dummy_way_sel_predec_blk1 = new PredecBlk(1, sa_mux_lev_1_dec, 0, 0, 0, is_dram, true);
     dummy_way_sel_predec_blk2 = new PredecBlk(1, sa_mux_lev_1_dec, 0, 0, 0, is_dram, false);
 
-    PredecBlkDrv* r_predec_blk_drv1 = new PredecBlkDrv(0, r_predec_blk1, is_dram);
-    PredecBlkDrv* r_predec_blk_drv2 = new PredecBlkDrv(0, r_predec_blk2, is_dram);
-    PredecBlkDrv* b_mux_predec_blk_drv1 = new PredecBlkDrv(0, b_mux_predec_blk1, is_dram);
-    PredecBlkDrv* b_mux_predec_blk_drv2 = new PredecBlkDrv(0, b_mux_predec_blk2, is_dram);
-    PredecBlkDrv* sa_mux_lev_1_predec_blk_drv1 = new PredecBlkDrv(0, sa_mux_lev_1_predec_blk1, is_dram);
-    PredecBlkDrv* sa_mux_lev_1_predec_blk_drv2 = new PredecBlkDrv(0, sa_mux_lev_1_predec_blk2, is_dram);
-    PredecBlkDrv* sa_mux_lev_2_predec_blk_drv1 = new PredecBlkDrv(0, sa_mux_lev_2_predec_blk1, is_dram);
-    PredecBlkDrv* sa_mux_lev_2_predec_blk_drv2 = new PredecBlkDrv(0, sa_mux_lev_2_predec_blk2, is_dram);
+    auto r_predec_blk_drv1 = new PredecBlkDrv(0, r_predec_blk1, is_dram);
+    auto r_predec_blk_drv2 = new PredecBlkDrv(0, r_predec_blk2, is_dram);
+    auto b_mux_predec_blk_drv1 = new PredecBlkDrv(0, b_mux_predec_blk1, is_dram);
+    auto b_mux_predec_blk_drv2 = new PredecBlkDrv(0, b_mux_predec_blk2, is_dram);
+    auto sa_mux_lev_1_predec_blk_drv1 = new PredecBlkDrv(0, sa_mux_lev_1_predec_blk1, is_dram);
+    auto sa_mux_lev_1_predec_blk_drv2 = new PredecBlkDrv(0, sa_mux_lev_1_predec_blk2, is_dram);
+    auto sa_mux_lev_2_predec_blk_drv1 = new PredecBlkDrv(0, sa_mux_lev_2_predec_blk1, is_dram);
+    auto sa_mux_lev_2_predec_blk_drv2 = new PredecBlkDrv(0, sa_mux_lev_2_predec_blk2, is_dram);
     way_sel_drv1 = new PredecBlkDrv(dyn_p.number_way_select_signals_mat, dummy_way_sel_predec_blk1, is_dram);
     dummy_way_sel_predec_blk_drv2 = new PredecBlkDrv(1, dummy_way_sel_predec_blk2, is_dram);
 

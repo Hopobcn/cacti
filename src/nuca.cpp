@@ -69,11 +69,11 @@ Nuca::init_cont() {
         exit(0);
     }
 
-    for (int i = 0; i < 2; i++) {
+    for (auto& cont_stat : cont_stats) {
         for (int j = 2; j < 5; j++) {
             for (int k = 0; k < ROUTER_TYPES; k++) {
                 for (int l = 0; l < 7; l++) {
-                    int* temp = cont_stats[i/*l2 or l3*/][j/*core*/][k/*64 or 128 or 256 link bw*/][l /* no banks*/];
+                    int* temp = cont_stat[j/*core*/][k/*64 or 128 or 256 link bw*/][l /* no banks*/];
                     assert(fscanf(cont, "%[^\n]\n", line) != EOF);
                     sscanf(line, "%[^:]: %d %d %d %d %d %d %d %d", jk, &temp[0], &temp[1], &temp[2], &temp[3], &temp[4],
                            &temp[5], &temp[6], &temp[7]);
@@ -86,12 +86,12 @@ Nuca::init_cont() {
 
 void
 Nuca::print_cont_stats() {
-    for (int i = 0; i < 2; i++) {
+    for (auto& cont_stat : cont_stats) {
         for (int j = 2; j < 5; j++) {
             for (int k = 0; k < ROUTER_TYPES; k++) {
                 for (int l = 0; l < 7; l++) {
                     for (int m = 0; l < 7; l++) {
-                        cout << cont_stats[i][j][k][l][m] << " ";
+                        cout << cont_stat[j][k][l][m] << " ";
                     }
                     cout << endl;
                 }
@@ -410,8 +410,8 @@ Nuca::sim_nuca() {
     }
     nuca_list.clear();
 
-    for (int i = 0; i < ROUTER_TYPES; i++) {
-        delete router_s[i];
+    for (auto& router_ : router_s) {
+        delete router_;
     }
     g_ip->display_ip();
     //  g_ip->force_cache_config = true;
@@ -474,7 +474,7 @@ Nuca::print_nuca(nuca_org_t* fr) {
 nuca_org_t* Nuca::find_optimal_nuca(list<nuca_org_t*>* n, min_values_t* minval) {
     double cost = 0;
     double min_cost = BIGNUM;
-    nuca_org_t* res = NULL;
+    nuca_org_t* res = nullptr;
     float d, a, dp, lp, c;
     int v;
     dp = g_ip->dynamic_power_wt_nuca;
