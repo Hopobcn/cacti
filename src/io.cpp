@@ -545,11 +545,11 @@ powerDef operator+(const powerDef& x, const powerDef& y) {
 uca_org_t cacti_interface(const string& infile_name) {
 
     uca_org_t fin_res;
-//  uca_org_t result;
     fin_res.valid = false;
 
     g_ip = new InputParameter();
     g_ip->parse_cfg(infile_name);
+
     if (g_ip->error_checking() == false) {
         exit(0);
     }
@@ -564,7 +564,6 @@ uca_org_t cacti_interface(const string& infile_name) {
         Nuca n(&g_tp.peri_global);
         n.sim_nuca();
     }
-//  g_ip->display_ip();
     solve(&fin_res);
 
     output_UCA(&fin_res);
@@ -596,23 +595,23 @@ uca_org_t cacti_interface(int cache_size, int line_size, int associativity, int 
     g_ip = new InputParameter();
     g_ip->add_ecc_b_ = true;
 
-    g_ip->data_arr_ram_cell_tech_type = data_arr_ram_cell_tech_flavor_in;
+    g_ip->data_arr_ram_cell_tech_type    = data_arr_ram_cell_tech_flavor_in;
     g_ip->data_arr_peri_global_tech_type = data_arr_peri_global_tech_flavor_in;
-    g_ip->tag_arr_ram_cell_tech_type = tag_arr_ram_cell_tech_flavor_in;
-    g_ip->tag_arr_peri_global_tech_type = tag_arr_peri_global_tech_flavor_in;
+    g_ip->tag_arr_ram_cell_tech_type     = tag_arr_ram_cell_tech_flavor_in;
+    g_ip->tag_arr_peri_global_tech_type  = tag_arr_peri_global_tech_flavor_in;
 
-    g_ip->ic_proj_type = interconnect_projection_type_in;
+    g_ip->ic_proj_type     = interconnect_projection_type_in;
     g_ip->wire_is_mat_type = wire_inside_mat_type_in;
     g_ip->wire_os_mat_type = wire_outside_mat_type_in;
-    g_ip->burst_len = burst_length;
-    g_ip->int_prefetch_w = pre_width;
-    g_ip->page_sz_bits = page_sz;
+    g_ip->burst_len        = burst_length;
+    g_ip->int_prefetch_w   = pre_width;
+    g_ip->page_sz_bits     = page_sz;
 
-    g_ip->cache_sz = cache_size;
-    g_ip->line_sz = line_size;
-    g_ip->assoc = associativity;
-    g_ip->nbanks = banks;
-    g_ip->out_w = output_width;
+    g_ip->cache_sz     = cache_size;
+    g_ip->line_sz      = line_size;
+    g_ip->assoc        = associativity;
+    g_ip->nbanks       = banks;
+    g_ip->out_w        = output_width;
     g_ip->specific_tag = specific_tag;
     if (tag_width == 0) {
         g_ip->tag_w = 42;
@@ -620,18 +619,18 @@ uca_org_t cacti_interface(int cache_size, int line_size, int associativity, int 
         g_ip->tag_w = tag_width;
     }
 
-    g_ip->access_mode = access_mode;
-    g_ip->delay_wt = obj_func_delay;
-    g_ip->dynamic_power_wt = obj_func_dynamic_power;
-    g_ip->leakage_power_wt = obj_func_leakage_power;
-    g_ip->area_wt = obj_func_area;
-    g_ip->cycle_time_wt = obj_func_cycle_time;
-    g_ip->delay_dev = dev_func_delay;
+    g_ip->access_mode       = access_mode;
+    g_ip->delay_wt          = obj_func_delay;
+    g_ip->dynamic_power_wt  = obj_func_dynamic_power;
+    g_ip->leakage_power_wt  = obj_func_leakage_power;
+    g_ip->area_wt           = obj_func_area;
+    g_ip->cycle_time_wt     = obj_func_cycle_time;
+    g_ip->delay_dev         = dev_func_delay;
     g_ip->dynamic_power_dev = dev_func_dynamic_power;
     g_ip->leakage_power_dev = dev_func_leakage_power;
-    g_ip->area_dev = dev_func_area;
-    g_ip->cycle_time_dev = dev_func_cycle_time;
-    g_ip->ed = ed_ed2_none;
+    g_ip->area_dev          = dev_func_area;
+    g_ip->cycle_time_dev    = dev_func_cycle_time;
+    g_ip->ed                = ed_ed2_none;
 
     switch (wt) {
     case (0):
@@ -667,43 +666,43 @@ uca_org_t cacti_interface(int cache_size, int line_size, int associativity, int 
         exit(0);
     }
 
-    g_ip->delay_wt_nuca = nuca_obj_func_delay;
-    g_ip->dynamic_power_wt_nuca = nuca_obj_func_dynamic_power;
-    g_ip->leakage_power_wt_nuca = nuca_obj_func_leakage_power;
-    g_ip->area_wt_nuca = nuca_obj_func_area;
-    g_ip->cycle_time_wt_nuca = nuca_obj_func_cycle_time;
-    g_ip->delay_dev_nuca = dev_func_delay;
+    g_ip->delay_wt_nuca          = nuca_obj_func_delay;
+    g_ip->dynamic_power_wt_nuca  = nuca_obj_func_dynamic_power;
+    g_ip->leakage_power_wt_nuca  = nuca_obj_func_leakage_power;
+    g_ip->area_wt_nuca           = nuca_obj_func_area;
+    g_ip->cycle_time_wt_nuca     = nuca_obj_func_cycle_time;
+    g_ip->delay_dev_nuca         = dev_func_delay;
     g_ip->dynamic_power_dev_nuca = nuca_dev_func_dynamic_power;
     g_ip->leakage_power_dev_nuca = nuca_dev_func_leakage_power;
-    g_ip->area_dev_nuca = nuca_dev_func_area;
-    g_ip->cycle_time_dev_nuca = nuca_dev_func_cycle_time;
-    g_ip->nuca = is_nuca;
-    g_ip->nuca_bank_count = nuca_bank_count;
+    g_ip->area_dev_nuca          = nuca_dev_func_area;
+    g_ip->cycle_time_dev_nuca    = nuca_dev_func_cycle_time;
+    g_ip->nuca                   = is_nuca;
+    g_ip->nuca_bank_count        = nuca_bank_count;
     if (nuca_bank_count > 0) {
         g_ip->force_nuca_bank = 1;
     }
-    g_ip->cores = core_count;
+    g_ip->cores       = core_count;
     g_ip->cache_level = cache_level;
 
     g_ip->temp = temp;
 
     g_ip->F_sz_nm = tech_node;
     g_ip->F_sz_um = tech_node / 1000;
-    g_ip->is_main_mem = (main_mem != 0) ? true : false;
-    g_ip->is_cache = (cache != 0) ? true : false;
+    g_ip->is_main_mem     = (main_mem != 0) ? true : false;
+    g_ip->is_cache        = (cache    != 0) ? true : false;
     g_ip->rpters_in_htree = (REPEATERS_IN_HTREE_SEGMENTS_in != 0) ? true : false;
 
-    g_ip->num_rw_ports = rw_ports;
-    g_ip->num_rd_ports = excl_read_ports;
-    g_ip->num_wr_ports = excl_write_ports;
+    g_ip->num_rw_ports    = rw_ports;
+    g_ip->num_rd_ports    = excl_read_ports;
+    g_ip->num_wr_ports    = excl_write_ports;
     g_ip->num_se_rd_ports = single_ended_read_ports;
-    g_ip->print_detail = 1;
-    g_ip->nuca = 0;
+    g_ip->print_detail    = 1;
+    g_ip->nuca            = 0;
 
-    g_ip->wt = Global_5;
+    g_ip->wt                 = Global_5;
     g_ip->force_cache_config = false;
-    g_ip->force_wiretype = false;
-    g_ip->print_input_args = p_input;
+    g_ip->force_wiretype     = false;
+    g_ip->print_input_args   = p_input;
 
 
     uca_org_t fin_res;
@@ -715,6 +714,7 @@ uca_org_t cacti_interface(int cache_size, int line_size, int associativity, int 
     if (g_ip->print_input_args) {
         g_ip->display_ip();
     }
+
     init_tech_params(g_ip->F_sz_um, false);
     Wire winit; // Do not delete this line. It initializes wires.
 
