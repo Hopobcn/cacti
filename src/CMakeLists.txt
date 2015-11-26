@@ -10,7 +10,6 @@ set(SOURCE_FILES
         decoder.cpp
         htree2.cpp
         io.cpp
-        main.cpp
         mat.cpp
         nuca.cpp
         parameter.cpp
@@ -21,6 +20,6 @@ set(SOURCE_FILES
         Ucache.cpp
         wire.cpp)
 
-
-add_executable(cacti ${SOURCE_FILES})
-target_link_libraries(cacti ${CMAKE_THREAD_LIBS_INIT})
+add_library(libcacti ${SOURCE_FILES})
+add_executable(cacti main.cpp)
+target_link_libraries(cacti libcacti ${CMAKE_THREAD_LIBS_INIT})

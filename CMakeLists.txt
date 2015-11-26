@@ -18,6 +18,19 @@ if (Threads_FOUND)
 endif(Threads_FOUND)
 
 find_package(GMock REQUIRED)
+if (GMOCK_FOUND)
+    message(STATUS "Google Testing Framework FOUND")
+    message(STATUS "GTEST_INCLUDE_DIR  ${GTEST_INCLUDE_DIR}")
+    message(STATUS "GTEST_LIBRARY_PATH ${GTEST_LIBRARY_PATH}")
+    message(STATUS "GTEST_LIBRARY      ${GTEST_LIBRARY}")
+
+    message(STATUS "Goolge Mocking Framework FOUND")
+    message(STATUS "GMOCK_INCLUDE_DIR  ${GMOCK_INCLUDE_DIR}")
+    message(STATUS "GMOCK_LIBRARY_PATH ${GMOCK_LIBRARY_PATH}")
+    message(STATUS "GMOCK_LIBRARY      ${GMOCK_LIBRARY}")
+else(GMOCK_FOUND)
+    message(FATAL_ERROR "Google Testing Framework NOT FOUND")
+endif(GMOCK_FOUND)
 
 if (("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang") OR
 ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU"))
@@ -47,4 +60,4 @@ endif(("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang") OR
 ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU"))
 
 add_subdirectory(src)
-#add_subdirectory(test)
+add_subdirectory(test)
