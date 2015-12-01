@@ -28,6 +28,10 @@ if (GMOCK_FOUND)
     message(STATUS "GMOCK_INCLUDE_DIR  ${GMOCK_INCLUDE_DIR}")
     message(STATUS "GMOCK_LIBRARY_PATH ${GMOCK_LIBRARY_PATH}")
     message(STATUS "GMOCK_LIBRARY      ${GMOCK_LIBRARY}")
+
+    include_directories(${GTEST_INCLUDE_DIR} ${GMOCK_INCLUDE_DIR})
+
+    enable_testing()
 else(GMOCK_FOUND)
     message(FATAL_ERROR "Google Testing Framework NOT FOUND")
 endif(GMOCK_FOUND)
